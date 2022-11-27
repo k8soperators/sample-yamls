@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+name: test-nginx
+replicas: 2
+spec:
+template:
+  metadata:
+    labels:
+      run: test-nginx
+  spec:
+    containers:
+    - image: nginx
+      name: test-nginx
+      ports:
+      - containerPort: 80
