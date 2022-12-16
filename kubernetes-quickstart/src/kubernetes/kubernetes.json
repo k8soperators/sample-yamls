@@ -1,0 +1,80 @@
+[{
+  "apiVersion" : "apps/v1",
+  "kind" : "Deployment",
+  "metadata" : {
+    "annotations" : {
+      "app.quarkus.io/build-timestamp" : "2022-12-16 - 16:20:54 +0000"
+    },
+    "labels" : {
+      "app.kubernetes.io/name" : "demo-app",
+      "app.kubernetes.io/version" : "latest"
+    },
+    "name" : "demo-app"
+  },
+  "spec" : {
+    "replicas" : 1,
+    "selector" : {
+      "matchLabels" : {
+        "app.kubernetes.io/name" : "demo-app",
+        "app.kubernetes.io/version" : "latest"
+      }
+    },
+    "template" : {
+      "metadata" : {
+        "annotations" : {
+          "app.quarkus.io/build-timestamp" : "2022-12-16 - 16:20:54 +0000"
+        },
+        "labels" : {
+          "app.kubernetes.io/name" : "demo-app",
+          "app.kubernetes.io/version" : "latest"
+        }
+      },
+      "spec" : {
+        "containers" : [ {
+          "env" : [ {
+            "name" : "KUBERNETES_NAMESPACE",
+            "valueFrom" : {
+              "fieldRef" : {
+                "fieldPath" : "metadata.namespace"
+              }
+            }
+          } ],
+          "image" : "quay.io/akoserwa/demo-app:latest",
+          "imagePullPolicy" : "Always",
+          "name" : "demo-app",
+          "ports" : [ {
+            "containerPort" : 8080,
+            "name" : "http",
+            "protocol" : "TCP"
+          } ]
+        } ]
+      }
+    }
+  }
+},{
+  "apiVersion" : "v1",
+  "kind" : "Service",
+  "metadata" : {
+    "annotations" : {
+      "app.quarkus.io/build-timestamp" : "2022-12-16 - 16:20:54 +0000"
+    },
+    "labels" : {
+      "app.kubernetes.io/name" : "demo-app",
+      "app.kubernetes.io/version" : "latest"
+    },
+    "name" : "demo-app"
+  },
+  "spec" : {
+    "ports" : [ {
+      "name" : "http",
+      "port" : 80,
+      "protocol" : "TCP",
+      "targetPort" : 8080
+    } ],
+    "selector" : {
+      "app.kubernetes.io/name" : "demo-app",
+      "app.kubernetes.io/version" : "latest"
+    },
+    "type" : "ClusterIP"
+  }
+}]
