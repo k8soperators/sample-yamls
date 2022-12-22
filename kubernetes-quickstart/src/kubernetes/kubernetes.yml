@@ -15,7 +15,6 @@ spec:
     matchLabels:
       app.kubernetes.io/name: demo-app
       app.kubernetes.io/version: latest
-      k8soperators.github.com/chapter: "3"
   template:
     metadata:
       annotations:
