@@ -43,6 +43,7 @@ kind: Service
 metadata:
   annotations:
     app.quarkus.io/build-timestamp: 2022-12-16 - 16:20:54 +0000
+    k8soperators.github.com/chapter: "3"
   labels:
     app.kubernetes.io/name: demo-app
     app.kubernetes.io/version: latest
